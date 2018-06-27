@@ -6,6 +6,10 @@ import styled from 'styled-components';
 const AppStyle = styled.div`
   text-align: center;
   color: hsl(0, 0%, 22%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -13,12 +17,14 @@ const AppStyle = styled.div`
   }
 
   .App-header {
-    background-color: #222;
-    height: 150px;
-    padding: 20px;
-    color: white;
   }
+`;
 
+const Header = styled.header`
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
   .App-title {
     font-size: 1.5em;
   }
@@ -41,10 +47,10 @@ class App extends Component {
   render() {
     return (
       <AppStyle>
-        <header className="App-header">
+        <Header>
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome</h1>
-        </header>
+        </Header>
         <Beers />
       </AppStyle>
     );
