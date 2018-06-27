@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 const AppStyle = styled.div`
   text-align: center;
+  color: hsl(0, 0%, 22%);
 
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
