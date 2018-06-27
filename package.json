@@ -1,5 +1,5 @@
 {
-  "name": "1_redux-and-rxjs",
+  "name": "redux-and-rxjs",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
