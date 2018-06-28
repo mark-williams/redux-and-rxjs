@@ -21,12 +21,24 @@ const SearchPanel = styled.div`
 
 const Results = styled.div`
   flex: 8;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `;
+
+const beers = [
+  'Greene King IPA',
+  'Bank Top Flat Cap',
+  'Formby Samba',
+  'Formby IPA',
+  'London Pride'
+];
 
 const Beers = () => (
   <Container>
     <SearchPanel>Search</SearchPanel>
-    <Results />
+    <Results>{beers.map(beer => <div>{beer}</div>)}</Results>
   </Container>
 );
 
