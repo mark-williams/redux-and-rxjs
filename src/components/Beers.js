@@ -31,17 +31,20 @@ const Results = styled.div`
   align-items: flex-start;
 `;
 
-const sampleBeers = [
-  'Greene King IPA',
-  'Bank Top Flat Cap',
-  'Formby Samba',
-  'Formby IPA',
-  'London Pride'
-];
+const getBeers = () => {
+  const apiRoot = 'https://api.punkapi.com/v2/beers';
+  return fetch(apiRoot);
+};
 
 class Beers extends React.Component {
   componentDidMount = () => {
-    this.props.beersRetrieved(sampleBeers.slice(0, 3));
+    getBeers()
+      .then(r => {
+        return r.json();
+      })
+      .then(bs => {
+        this.props.beersRetrieved(bs);
+      });
   };
 
   render = () => (
