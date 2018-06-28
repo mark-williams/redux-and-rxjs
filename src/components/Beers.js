@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { BeerList } from './BeerList';
 
 const Container = styled.div`
   display: flex;
@@ -38,7 +39,9 @@ const beers = [
 const Beers = () => (
   <Container>
     <SearchPanel>Search</SearchPanel>
-    <Results>{beers.map(beer => <div>{beer}</div>)}</Results>
+    <Results>
+      <BeerList beers={beers} />
+    </Results>
   </Container>
 );
 
