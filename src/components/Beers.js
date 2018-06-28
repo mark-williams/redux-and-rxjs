@@ -1,5 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { beersRetrieved } from '../actions';
 import { BeerList } from './BeerList';
 
 const Container = styled.div`
@@ -28,7 +31,7 @@ const Results = styled.div`
   align-items: flex-start;
 `;
 
-const beers = [
+const sampleBeers = [
   'Greene King IPA',
   'Bank Top Flat Cap',
   'Formby Samba',
@@ -36,13 +39,35 @@ const beers = [
   'London Pride'
 ];
 
-const Beers = () => (
-  <Container>
-    <SearchPanel>Search</SearchPanel>
-    <Results>
-      <BeerList beers={beers} />
-    </Results>
-  </Container>
-);
+class Beers extends React.Component {
+  componentDidMount = () => {
+    this.props.beersRetrieved(sampleBeers.slice(0, 3));
+  };
 
-export default Beers;
+  render = () => (
+    <Container>
+      <SearchPanel>Search</SearchPanel>
+      <Results>
+        <BeerList beers={this.props.beers} />
+      </Results>
+    </Container>
+  );
+}
+
+Beers.propTypes = {
+  beers: PropTypes.array,
+  beersRetrieved: PropTypes.func
+};
+
+const mapStateToProps = state => ({
+  beers: state.beers
+});
+
+const mapDispatchToProps = dispatch => ({
+  beersRetrieved: payload => dispatch(beersRetrieved(payload))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Beers);

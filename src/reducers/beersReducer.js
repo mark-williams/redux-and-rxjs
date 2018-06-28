@@ -1,7 +1,7 @@
-import { BEERS_RETRIEVED } from '../actions';
+import { actionTypes } from '../actions';
 
 const reducer = (state, action) => {
-  if (action.type === BEERS_RETRIEVED) {
+  if (action.type === actionTypes.BEERS_RETRIEVED) {
     return { ...state, beers: action.payload };
   }
 
