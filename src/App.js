@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import Beers from './components/Beers';
+import { Provider } from 'react-redux';
 import styled from 'styled-components';
+import logo from './logo.svg';
+import store from './store';
+import Beers from './components/Beers';
 
 const AppStyle = styled.div`
   text-align: center;
@@ -46,13 +48,15 @@ const Header = styled.header`
 class App extends Component {
   render() {
     return (
-      <AppStyle>
-        <Header>
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome</h1>
-        </Header>
-        <Beers />
-      </AppStyle>
+      <Provider store={store}>
+        <AppStyle>
+          <Header>
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1 className="App-title">Welcome</h1>
+          </Header>
+          <Beers />
+        </AppStyle>
+      </Provider>
     );
   }
 }
