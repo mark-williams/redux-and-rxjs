@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { beersRetrieved } from '../actions';
@@ -67,7 +68,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  beersRetrieved: payload => dispatch(beersRetrieved(payload))
+  ...bindActionCreators({ beersRetrieved }, dispatch)
 });
 
 export default connect(
