@@ -95,11 +95,11 @@ Beers.propTypes = {
   beersRetrieved: PropTypes.func
 };
 
-const mapStateToProps = state => ({
-  searchText: state.searchText,
-  searchError: state.searchError,
-  beers: state.beers,
-  loading: state.loading
+const mapStateToProps = ({ beers, search }) => ({
+  searchText: search.searchText,
+  searchError: search.searchError,
+  beers: beers.beers,
+  loading: search.loading
 });
 
 const mapDispatchToProps = dispatch => ({
