@@ -16,16 +16,26 @@ const Container = styled.div`
 
 const SearchPanel = styled.div`
   flex: 1;
-  min-width: 10rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 15rem;
   height: 100%;
   background-color: hsl(260, 16%, 40%);
   height: 100%;
   color: white;
-  padding: 2rem 0 0 2rem;
+  padding: 2rem;
+  label {
+    margin-bottom: 0.4rem;
+  }
+  input {
+    font-size: 1rem;
+    padding: 0.4rem;
+    border-radius: 0.4rem;
+  }
 `;
 
 const Results = styled.div`
-  flex: 8;
+  flex: 6;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -35,8 +45,6 @@ const Results = styled.div`
 const getBeers = () => {
   const apiRoot = 'https://api.punkapi.com/v2/beers';
   return fetch(apiRoot);
-
-  //return Promise.resolve([]);
 };
 
 class Beers extends React.Component {
@@ -52,7 +60,10 @@ class Beers extends React.Component {
 
   render = () => (
     <Container>
-      <SearchPanel>Search</SearchPanel>
+      <SearchPanel>
+        <label htmlFor="searchInput">Search</label>
+        <input id="searchInput" type="text" />
+      </SearchPanel>
       <Results>
         <BeerList beers={this.props.beers} />
       </Results>
