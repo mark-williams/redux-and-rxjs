@@ -42,6 +42,11 @@ const Results = styled.div`
   align-items: flex-start;
 `;
 
+const Error = styled.div`
+  margin-top: 0.4rem;
+  color: hsl(0, 80%, 70%);
+`;
+
 const getBeers = () => {
   const apiRoot = 'https://api.punkapi.com/v2/beers';
   return fetch(apiRoot);
@@ -72,6 +77,7 @@ class Beers extends React.Component {
           onChange={this.onSearchChange}
           value={this.props.searchText}
         />
+        <Error>{this.props.searchError}</Error>
       </SearchPanel>
       <Results>
         <BeerList beers={this.props.beers} loading={this.props.loading} />
@@ -82,6 +88,7 @@ class Beers extends React.Component {
 
 Beers.propTypes = {
   searchText: PropTypes.string,
+  searchError: PropTypes.string,
   beers: PropTypes.array,
   loading: PropTypes.bool,
   searchInput: PropTypes.func,
@@ -90,6 +97,7 @@ Beers.propTypes = {
 
 const mapStateToProps = state => ({
   searchText: state.searchText,
+  searchError: state.searchError,
   beers: state.beers,
   loading: state.loading
 });

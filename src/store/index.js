@@ -6,6 +6,7 @@ import beersReducer from '../reducers/beersReducer';
 const initialState = {
   beers: [],
   searchText: '',
+  searchError: '',
   loading: false
 };
 

@@ -9,6 +9,10 @@ const reducer = (state, action) => {
     return { ...state, searchText: action.payload, beers: [], loading: true };
   }
 
+  if (action.type === actionTypes.SEARCH_ERROR) {
+    return { ...state, searchError: action.payload };
+  }
+
   return state;
 };
 
