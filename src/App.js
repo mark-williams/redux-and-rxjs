@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import styled from 'styled-components';
 import logo from './logo.svg';
-import store from './store';
+import configureStore from './store';
 import Beers from './components/Beers';
 
 const AppStyle = styled.div`
@@ -44,6 +44,7 @@ const Header = styled.header`
     }
   }
 `;
+const store = configureStore();
 
 class App extends Component {
   render() {

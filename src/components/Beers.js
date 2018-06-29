@@ -35,6 +35,8 @@ const Results = styled.div`
 const getBeers = () => {
   const apiRoot = 'https://api.punkapi.com/v2/beers';
   return fetch(apiRoot);
+
+  //return Promise.resolve([]);
 };
 
 class Beers extends React.Component {
