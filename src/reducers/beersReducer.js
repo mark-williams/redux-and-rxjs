@@ -6,7 +6,7 @@ const reducer = (state, action) => {
   }
 
   if (action.type === actionTypes.SEARCH_INPUT) {
-    return { ...state, searchText: action.payload };
+    return { ...state, searchText: action.payload, beers: [], loading: true };
   }
 
   return state;

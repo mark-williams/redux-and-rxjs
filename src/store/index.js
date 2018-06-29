@@ -5,7 +5,8 @@ import beersReducer from '../reducers/beersReducer';
 
 const initialState = {
   beers: [],
-  searchText: ''
+  searchText: '',
+  loading: false
 };
 
 const epicMiddleware = createEpicMiddleware();

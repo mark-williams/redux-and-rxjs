@@ -74,7 +74,7 @@ class Beers extends React.Component {
         />
       </SearchPanel>
       <Results>
-        <BeerList beers={this.props.beers} />
+        <BeerList beers={this.props.beers} loading={this.props.loading} />
       </Results>
     </Container>
   );
@@ -83,13 +83,15 @@ class Beers extends React.Component {
 Beers.propTypes = {
   searchText: PropTypes.string,
   beers: PropTypes.array,
+  loading: PropTypes.bool,
   searchInput: PropTypes.func,
   beersRetrieved: PropTypes.func
 };
 
 const mapStateToProps = state => ({
   searchText: state.searchText,
-  beers: state.beers
+  beers: state.beers,
+  loading: state.loading
 });
 
 const mapDispatchToProps = dispatch => ({
