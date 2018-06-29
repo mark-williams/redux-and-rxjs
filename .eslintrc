@@ -9,19 +9,19 @@
     "node": true,
     "jest": true
   },
-  "globals": {"Promise": true}
-  ,
+  "globals": { "Promise": true },
   // To give you an idea how to override rule options:
   "rules": {
     //"quotes": [2, "single"],
     //"eol-last": [2],
     //"no-mixed-requires": [0],
     //"no-underscore-dangle": [0],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
 
     // React-specific
-     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-     "react/forbid-prop-types": [1, { "forbid": ["any"] }],
-     "react/no-did-mount-set-state": [0],
-     "react/no-multi-comp": 0
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/forbid-prop-types": [1, { "forbid": ["any"] }],
+    "react/no-did-mount-set-state": [0],
+    "react/no-multi-comp": 0
   }
 }

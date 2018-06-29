@@ -7,19 +7,22 @@ const initialState = {
 };
 
 const search = (state = initialState, { type, payload }) => {
-  if (type === actionTypes.BEERS_RETRIEVED) {
-    return { ...state, loading: false, searchError: '' };
-  }
+  switch (type) {
+    case actionTypes.BEERS_RETRIEVED:
+      return { ...state, loading: false, searchError: '' };
 
-  if (type === actionTypes.SEARCH_INPUT) {
-    return { ...state, searchText: payload, loading: true };
-  }
+    case actionTypes.RETRIEVING:
+      return { ...state, loading: true, searchError: '' };
 
-  if (type === actionTypes.SEARCH_ERROR) {
-    return { ...state, searchError: 'Error retrieving data' };
-  }
+    case actionTypes.SEARCH_INPUT:
+      return { ...state, searchText: payload };
 
-  return state;
+    case actionTypes.SEARCH_ERROR:
+      return { ...state, searchError: 'Error retrieving data' };
+
+    default:
+      return state;
+  }
 };
 
 export default search;

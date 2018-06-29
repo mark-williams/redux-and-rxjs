@@ -1,5 +1,5 @@
 import { combineEpics } from 'redux-observable';
-import { throwError, of } from 'rxjs';
+import { throwError, of, concat } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import {
   tap,
@@ -9,7 +9,12 @@ import {
   catchError,
   filter
 } from 'rxjs/operators';
-import { actionTypes, beersRetrieved, searchError } from '../actions';
+import {
+  actionTypes,
+  beersRetrieved,
+  searchError,
+  retrieving
+} from '../actions';
 
 const searchApiRoot = 'https://api.punkapi.com/v2/beers?beer_name=';
 const getSearchUrl = searchTerm => `${searchApiRoot}${searchTerm}`;
@@ -27,10 +32,13 @@ const loadBeersEpic = action$ => {
     // eslint-disable-next-line
     tap(x => console.log('ACTION', x)),
     switchMap(action => {
-      return ajaxCall(action.payload).pipe(
+      const retrieve = of(retrieving());
+      const request = ajaxCall(action.payload).pipe(
         map(results => beersRetrieved(results)),
         catchError(err => of(searchError(err)))
       );
+
+      return concat(retrieve, request);
     })
   );
 };
