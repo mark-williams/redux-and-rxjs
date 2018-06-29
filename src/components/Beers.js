@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { beersRetrieved } from '../actions';
+import { beersRetrieved, searchInput } from '../actions';
 import { BeerList } from './BeerList';
 
 const Container = styled.div`
@@ -58,11 +58,20 @@ class Beers extends React.Component {
       });
   };
 
+  onSearchChange = event => {
+    this.props.searchInput(event.target.value);
+  };
+
   render = () => (
     <Container>
       <SearchPanel>
         <label htmlFor="searchInput">Search</label>
-        <input id="searchInput" type="text" />
+        <input
+          id="searchInput"
+          type="text"
+          onChange={this.onSearchChange}
+          value={this.props.searchText}
+        />
       </SearchPanel>
       <Results>
         <BeerList beers={this.props.beers} />
@@ -72,16 +81,19 @@ class Beers extends React.Component {
 }
 
 Beers.propTypes = {
+  searchText: PropTypes.string,
   beers: PropTypes.array,
+  searchInput: PropTypes.func,
   beersRetrieved: PropTypes.func
 };
 
 const mapStateToProps = state => ({
+  searchText: state.searchText,
   beers: state.beers
 });
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators({ beersRetrieved }, dispatch)
+  ...bindActionCreators({ searchInput, beersRetrieved }, dispatch)
 });
 
 export default connect(

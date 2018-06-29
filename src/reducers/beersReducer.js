@@ -5,6 +5,10 @@ const reducer = (state, action) => {
     return { ...state, beers: action.payload };
   }
 
+  if (action.type === actionTypes.SEARCH_INPUT) {
+    return { ...state, searchText: action.payload };
+  }
+
   return state;
 };
 
