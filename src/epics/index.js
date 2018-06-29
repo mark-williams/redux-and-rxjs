@@ -4,13 +4,15 @@ import { tap, switchMap, map } from 'rxjs/operators';
 import { actionTypes } from '../actions';
 
 const searchApiRoot = 'https://api.punkapi.com/v2/beers?beer_name=';
+const getSearchUrl = searchTerm => `${searchApiRoot}${searchTerm}`;
+const ajaxCall = searchTerm => ajax.getJSON(getSearchUrl(searchTerm));
 
 const loadBeersEpic = action$ => {
   return action$.ofType(actionTypes.SEARCH_INPUT).pipe(
     // eslint-disable-next-line
     tap(x => console.log('ACTION', x)),
     switchMap(action => {
-      return ajax.getJSON(searchApiRoot + action.payload).pipe(
+      return ajaxCall(action.payload).pipe(
         map(x => ({
           type: actionTypes.BEERS_RETRIEVED,
           payload: x
