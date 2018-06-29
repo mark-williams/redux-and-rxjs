@@ -8,7 +8,7 @@ const initialState = {
 
 const search = (state = initialState, { type, payload }) => {
   if (type === actionTypes.BEERS_RETRIEVED) {
-    return { ...state, loading: false };
+    return { ...state, loading: false, searchError: '' };
   }
 
   if (type === actionTypes.SEARCH_INPUT) {

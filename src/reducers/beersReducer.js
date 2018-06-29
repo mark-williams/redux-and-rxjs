@@ -6,7 +6,7 @@ const initialState = {
 
 const beers = (state = initialState, action) => {
   if (action.type === actionTypes.BEERS_RETRIEVED) {
-    return { ...state, beers: action.payload, loading: false };
+    return { ...state, beers: action.payload };
   }
 
   return state;
