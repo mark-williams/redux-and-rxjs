@@ -1,7 +1,14 @@
 import { combineEpics } from 'redux-observable';
 import { throwError, of } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
-import { tap, switchMap, map, debounceTime, catchError } from 'rxjs/operators';
+import {
+  tap,
+  switchMap,
+  map,
+  debounceTime,
+  catchError,
+  filter
+} from 'rxjs/operators';
 import { actionTypes, beersRetrieved, searchError } from '../actions';
 
 const searchApiRoot = 'https://api.punkapi.com/v2/beers?beer_name=';
@@ -16,6 +23,7 @@ const ajaxCall = searchTerm => {
 const loadBeersEpic = action$ => {
   return action$.ofType(actionTypes.SEARCH_INPUT).pipe(
     debounceTime(300),
+    filter(action => action.payload.length),
     // eslint-disable-next-line
     tap(x => console.log('ACTION', x)),
     switchMap(action => {
