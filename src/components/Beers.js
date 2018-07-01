@@ -9,7 +9,8 @@ import { BeerList } from './BeerList';
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  height: 100%;
+  min-height: 100%;
+  height: auto;
   margin: 0;
   padding: 0;
 `;
@@ -19,9 +20,7 @@ const SearchPanel = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 15rem;
-  height: 100%;
   background-color: hsl(260, 16%, 40%);
-  height: 100%;
   color: white;
   padding: 2rem;
   label {

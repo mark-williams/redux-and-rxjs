@@ -9,6 +9,7 @@ const AppStyle = styled.div`
   text-align: center;
   color: hsl(0, 0%, 22%);
   width: 100%;
+  min-height: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -44,6 +45,11 @@ const Header = styled.header`
     }
   }
 `;
+
+const ContentContainer = styled.div`
+  flex: 1;
+`;
+
 const store = configureStore();
 
 class App extends Component {
@@ -55,7 +61,9 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Welcome</h1>
           </Header>
-          <Beers />
+          <ContentContainer>
+            <Beers />
+          </ContentContainer>
         </AppStyle>
       </Provider>
     );
